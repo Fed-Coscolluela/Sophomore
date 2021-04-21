@@ -1,0 +1,230 @@
+<!-- NOTE: Kindly note that the form does not have actual validation of input yet. All it
+does is throw some cautionary messages whenever the submit button is pressed yet no field
+is answered at all. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/png" href="images/currency-icon.png" />
+    <title>Currency Converter</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <p style="color: white; padding: 15px 0 0 26px; letter-spacing: 2px;">COSCOLLUELA</p>
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" aria-current="page" href="index.html">About Me</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="family.html">Family</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="form.html">Form</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="slideshow.html">Slideshow</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link active" href="currency.html">Currency</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="bmiCalc.html">BMI</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <span class="project-name">CS 121 Laboratory 1
+          </span>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="form-introduction text-center">
+          <p style="font-size: 1.5rem;"><strong>Currency Converter</strong></p>
+          <p class="lead">Supports Philippine Peso, Korean Won, US Dollar, and Euro</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 mb-3" style="padding-left: 20px;">
+            <div class="row">
+                <img src="images/boss-baby-gif-1.gif" id="boss-baby" alt="" style="width: 700px; border-radius: 20%;">
+                <div class="col-12" style="float: left;"><button onclick="hideShow()" class="btn">Toggle</button></div>
+            </div>
+          </div>
+          <div class="col-lg-7 mb-3" style="background: rgb(19, 18, 18); padding: 20px 20px 5px 20px; border-radius: 8px;">
+              <div class="row mb-3">
+                  <div class="col-sm-6">
+                      <label for="exampleFormControlInput1" class="form-label" style="color: white;">Your money is...</label>
+                      <input type="number" min="0" id="amount1" oninput="updateValue2()" class="form-control" placeholder="0.00">
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="exampleFormControlInput1" class="form-label" style="color: white;">Its converted value is...</label>
+                      <input type="number" min="0" id="amount2" oninput="updateValue1()" class="form-control" placeholder="0.00">
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <div class="col-sm-6">
+                      <label for="from" class="form-label" style="color: white;">From</label>
+                        <select name="currency1" id="currency1" class="form-select" oninput="updateValue2()">
+                          <option disabled value="">Choose one...</option>
+                          <option selected value="php">Philippine Peso (PHP)</option>
+                          <option value="krw">South Korean Won (KRW)</option>
+                          <option value="usd">United States Dollar (USD)</option>
+                          <option value="eur">Euro (EUR)</option>
+                        </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="to" class="form-label" style="color: white;">To</label>
+                        <select name="currency2" id="currency2" class="form-select" oninput="updateValue2()">
+                            <option disabled value="">Choose one...</option>
+                            <option value="php">Philippine Peso (PHP)</option>
+                            <option value="krw">South Korean Won (KRW)</option>
+                            <option selected value="usd">United States Dollar (USD)</option>
+                            <option value="eur">Euro (EUR)</option>
+                        </select>
+                  </div>
+              </div>
+              <div class="col-12">
+                <button type="button" id="reset" onclick="reset()" class="form-btn" style="float: right;">Reset</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    <footer class="bg-dark text-center text-white" style="margin-top: 50px;">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/janfederico.coscolluela.7/" role="button" target="_blank"
+            ><i class="fa fa-facebook"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://discord.com/channels/@mea" role="button" target="_blank"
+            ><i class="fa fa-comments"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" role="button" target="_blank"
+            ><i class="fa fa-google"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://github.com/Fed-Coscolluela" role="button" target="_blank"
+            ><i class="fa fa-github"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://up.edu.ph/" role="button" target="_blank"
+            ><i class="fa fa-institution"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © Coscolluela | Portfolio 2021
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+    
+      let input1 = document.getElementById("amount1");
+      let input2 = document.getElementById("amount2");
+      let currencyInput1 = document.getElementById("currency1");
+      let currencyInput2 = document.getElementById("currency2");
+      
+      function convertToPHP(amount, currency){
+        let phpEquivalent = amount;
+        if(currency != "php"){
+          if(currency == "usd"){
+            phpEquivalent *= 48.65;
+          } else if(currency == "krw"){
+            phpEquivalent *= 0.043;
+          } else if(currency == "eur"){
+            phpEquivalent *= 57.96;
+          }
+        }
+        return phpEquivalent;
+      }
+      
+      function convertFromPHP(amount, currency){
+        let convertedAmount = amount;
+        if(currency != "php"){
+          if(currency == "usd"){
+            convertedAmount *= 1/48.65;
+          } else if(currency == "krw"){
+            convertedAmount *= 1/0.043;
+          } else if(currency == "eur"){
+            convertedAmount *= 1/57.96;
+          }
+        }
+        return convertedAmount;
+      }
+    
+      function convert(amount, currency1, currency2){
+        return convertFromPHP(convertToPHP(amount, currency1), currency2);
+      }
+    
+      function updateValue2(){
+        amount1 = parseFloat(input1.value);
+        currency1 = currencyInput1.value;
+        currency2 = currencyInput2.value;
+        
+        console.log(convert(amount1, currency1, currency2));
+        document.getElementById("amount2").value = convert(amount1, currency1, currency2).toFixed(3);;
+      }
+      
+      function updateValue1(){
+        amount2 = parseFloat(input2.value);
+        currency1 = currencyInput1.value;
+        currency2 = currencyInput2.value;
+        
+        document.getElementById("amount1").value = convert(amount2, currency2, currency1).toFixed(3);;
+      }
+
+      function reset() {
+          input1.value = null;
+          input2.value = null;
+          currencyInput1.value = "php";
+          currencyInput2.value = "usd";
+       }
+
+       function hideShow(){
+        let p = document.getElementById("boss-baby");
+
+        if(p.style.display==="none"){
+            p.style.display = "block";
+        }else{
+            p.style.display = "none";
+        }
+       }
+      </script>
+    <script src="js/validation.js"></script>
+  </body>
+</html>
+

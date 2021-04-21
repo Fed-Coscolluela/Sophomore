@@ -1,0 +1,533 @@
+<script>
+  from.oninput = function () {
+    let f = parseFloat(from.value);
+
+    if (fromUnit.value == "peso") {
+      if (toUnit.value == "peso") {
+        to.value = (f * 1).toFixed(3);
+      } else if (toUnit.value == "krw") {
+        to.value = (f / 0.043).toFixed(3);
+      } else if (toUnit.value == "usd") {
+        to.value = (f / 48.65).toFixed(3);
+      } else {
+        to.value = (f / 57.96).toFixed(3);
+      }
+    } else if (fromUnit.value == "krw") {
+      if (toUnit.value == "peso") {
+        to.value = (f * 0.043).toFixed(3);
+      } else if (toUnit.value == "krw") {
+        to.value = (f * 1).toFixed(3);
+      } else if (toUnit.value == "usd") {
+        to.value = ((f * 0.043) / 48.65).toFixed(3);
+      } else {
+        to.value = ((f * 0.043) / 57.96).toFixed(3);
+      }
+    } else if (fromUnit.value == "usd") {
+      if (toUnit.value == "peso") {
+        to.value = (f * 48.65).toFixed(3);
+      } else if (toUnit.value == "krw") {
+        to.value = ((f * 48.65) / 0.043).toFixed(3);
+      } else if (toUnit.value == "usd") {
+        to.value = (f * 1).toFixed(3);
+      } else {
+        to.value = ((f * 48.65) / 57.96).toFixed(3);
+      }
+    } else if (fromUnit.value == "eur") {
+      if (toUnit.value == "peso") {
+        to.value = (f * 57.96).toFixed(3);
+      } else if (toUnit.value == "krw") {
+        to.value = ((f * 57.96) / 0.043).toFixed(3);
+      } else if (toUnit.value == "usd") {
+        to.value = ((f * 57.96) / 48.65).toFixed(3);
+      } else {
+        to.value = (f * 1).toFixed(3);
+      }
+    }
+  };
+
+  to.oninput = function () {
+    let t = parseFloat(to.value);
+
+    if (toUnit.value == "peso") {
+      if (fromUnit.value == "peso") {
+        from.value = (t * 1).toFixed(3);
+      } else if (fromUnit.value == "krw") {
+        from.value = (t / 0.043).toFixed(3);
+      } else if (toUnit.value == "usd") {
+        from.value = (t / 48.65).toFixed(3);
+      } else {
+        from.value = (t / 57.96).toFixed(3);
+      }
+    } else if (toUnit.value == "krw") {
+      if (fromUnit.value == "peso") {
+        from.value = (t * 0.043).toFixed(3);
+      } else if (fromUnit.value == "krw") {
+        from.value = (t * 1).toFixed(3);
+      } else if (fromUnit.value == "usd") {
+        from.value = (t * 0.043 * 48.65).toFixed(3);
+      } else {
+        from.value = (t * 0.043 * 57.96).toFixed(3);
+      }
+    } else if (toUnit.value == "usd") {
+      if (fromUnit.value == "peso") {
+        from.value = (t * 48.65).toFixed(3);
+      } else if (fromUnit.value == "krw") {
+        from.value = ((t * 48.65) / 0.043).toFixed(3);
+      } else if (fromUnit.value == "usd") {
+        from.value = (t * 1).toFixed(3);
+      } else {
+        from.value = ((t * 48.65) / 57.96).toFixed(3);
+      }
+    } else if (toUnit.value == "eur") {
+      if (fromUnit.value == "peso") {
+        from.value = (t * 57.96).toFixed(3);
+      } else if (fromUnit.value == "krw") {
+        from.value = ((t * 57.96) / 0.043).toFixed(3);
+      } else if (fromUnit.value == "usd") {
+        from.value = ((t * 57.96) / 48.65).toFixed(3);
+      } else {
+        from.value = (t * 1).toFixed(3);
+      }
+    }
+  };
+</script>
+
+<script>
+  let height = document.getElementById("height");
+  let weight = document.getElementById("weight");
+  let heightUnit = document.getElementById("heightUnit");
+  let weightUnit = document.getElementById("weightUnit");
+
+  weight.oninput = function () {
+    let weightValue = parseFloat(weight.value);
+    if (height.value !== "") {
+      let heightValue = parseFloat(height.value);
+      if (heightUnit.value == "meter" && weightUnit.value == "kilogram") {
+        let output = weightValue / (heightValue * heightValue);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      } else if (heightUnit.value == "meter" && weightUnit.value == "pound") {
+        let convertedHeight = heightValue * 39.37;
+        let output = (weightValue * 703) / (convertedHeight * convertedHeight);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      } else if (
+        heightUnit.value == "centimeter" &&
+        weightUnit.value == "kilogram"
+      ) {
+        let convertedHeight = heightValue * 0.01;
+        let output = weightValue / (convertedHeight * convertedHeight);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      } else if (
+        heightUnit.value == "centimeter" &&
+        weightUnit.value == "pound"
+      ) {
+        let convertedHeight = heightValue * 39.37 * 39.37;
+        let output = (weightValue * 703) / (convertedHeight * convertedHeight);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      }
+    } else {
+      document.getElementById("bmi").innerText = "";
+      document.getElementById("category").innerText = "";
+    }
+  };
+
+  height.oninput = function () {
+    let heightValue = parseFloat(height.value);
+
+    if (weight.value !== "") {
+      let weightValue = parseFloat(weight.value);
+      if (heightUnit.value == "meter" && weightUnit.value == "kilogram") {
+        let output = weightValue / (heightValue * heightValue);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      } else if (heightUnit.value == "meter" && weightUnit.value == "pound") {
+        let convertedHeight = heightValue * 39.37;
+        let output = (weightValue * 703) / (convertedHeight * convertedHeight);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      } else if (
+        heightUnit.value == "centimeter" &&
+        weightUnit.value == "kilogram"
+      ) {
+        let convertedHeight = heightValue * 0.01;
+        let output = weightValue / (convertedHeight * convertedHeight);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      } else if (
+        heightUnit.value == "centimeter" &&
+        weightUnit.value == "pound"
+      ) {
+        let convertedHeight = heightValue * 39.37 * 39.37;
+        let output = (weightValue * 703) / (convertedHeight * convertedHeight);
+
+        if (output < 18.5) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Underweight";
+        } else if (output >= 18.5 && output <= 24.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Normal";
+        } else if (output >= 25 && output <= 29.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Overweight";
+        } else if (output >= 30 && output <= 34.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class I)";
+        } else if (output >= 35 && output <= 39.99) {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class II)";
+        } else {
+          document.getElementById("bmi").innerText = output.toFixed(2);
+          document.getElementById("category").innerText = "Obesity (Class III)";
+        }
+      }
+    } else {
+      document.getElementById("bmi").innerText = "";
+      document.getElementById("category").innerText = "";
+    }
+  };
+
+  function convertBaby() {
+    weightUnit.addEventListener("change", myResult);
+    heightUnit.addEventListener("change", myResult);
+
+    function myResult() {
+      if (weight.value !== "" && height.value !== "") {
+        if (weightUnit.value == "pound" && heightUnit.value == "meter") {
+          let convertedHeight = height.value * 39.37;
+          let output =
+            (weight.value * 703) / (convertedHeight * convertedHeight);
+
+          if (output < 18.5) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Underweight";
+          } else if (output >= 18.5 && output <= 24.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Normal";
+          } else if (output >= 25 && output <= 29.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Overweight";
+          } else if (output >= 30 && output <= 34.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Obesity (Class I)";
+          } else if (output >= 35 && output <= 39.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class II)";
+          } else {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class III)";
+          }
+        } else if (
+          heightUnit.value == "centimeter" &&
+          weightUnit.value == "pound"
+        ) {
+          let convertedHeight = height.value * 0.01 * 39.37;
+          let output =
+            (weight.value * 703) / (convertedHeight * convertedHeight);
+
+          if (output < 18.5) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Underweight";
+          } else if (output >= 18.5 && output <= 24.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Normal";
+          } else if (output >= 25 && output <= 29.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Overweight";
+          } else if (output >= 30 && output <= 34.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Obesity (Class I)";
+          } else if (output >= 35 && output <= 39.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class II)";
+          } else {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class III)";
+          }
+        } else if (
+          heightUnit.value == "meter" &&
+          weightUnit.value == "kilogram"
+        ) {
+          let output = weight.value / (height.value * height.value);
+
+          if (output < 18.5) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Underweight";
+          } else if (output >= 18.5 && output <= 24.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Normal";
+          } else if (output >= 25 && output <= 29.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Overweight";
+          } else if (output >= 30 && output <= 34.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Obesity (Class I)";
+          } else if (output >= 35 && output <= 39.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class II)";
+          } else {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class III)";
+          }
+        } else if (
+          heightUnit.value == "centimeter" &&
+          weightUnit.value == "kilogram"
+        ) {
+          let convertedHeight = height.value * 0.01;
+          let output = weight.value / (convertedHeight * convertedHeight);
+
+          if (output < 18.5) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Underweight";
+          } else if (output >= 18.5 && output <= 24.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Normal";
+          } else if (output >= 25 && output <= 29.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Overweight";
+          } else if (output >= 30 && output <= 34.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText = "Obesity (Class I)";
+          } else if (output >= 35 && output <= 39.99) {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class II)";
+          } else {
+            document.getElementById("bmi").innerText = output.toFixed(2);
+            document.getElementById("category").innerText =
+              "Obesity (Class III)";
+          }
+        }
+      } else {
+        document.getElementById("bmi").innerText = "";
+        document.getElementById("bmi").innerText = "";
+      }
+    }
+  }
+
+  function reset() {
+    height.value = null;
+    weight.value = null;
+    weightUnit.value = "kilogram";
+    heightUnit.value = "meter";
+  }
+</script>
+
+<script>
+  weight.oninput = function () {
+    let weightValue = parseFloat(weight.value);
+    if (height.value !== "") {
+      let heightValue = parseFloat(height.value);
+      let convertedHeight = heightValue / 100;
+      let output = weightValue / heightValue;
+      if (output < 18.5) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Underweight";
+      } else if (output >= 18.5 || output <= 24.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText = "BMI Category: Normal";
+      } else if (output >= 25 || output <= 29.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Overweight";
+      } else if (output >= 30 || output <= 34.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Obesity (Class I)";
+      } else if (output >= 35 || output <= 39.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Obesity (Class II)";
+      } else {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Obesity (Class III)";
+      }
+    } else {
+      document.getElementById("bmi").innerText = "Your BMI: ";
+      document.getElementById("category").innerText = "BMI Category: ";
+    }
+  };
+
+  height.oninput = function () {
+    let heightValue = parseFloat(height.value);
+    if (weight.value !== "") {
+      let weightValue = parseFloat(weight.value);
+      let output = weightValue / (heightValue * heightValue);
+      if (output < 18.5) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Underweight";
+      } else if (output >= 18.5 || output <= 24.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText = "BMI Category: Normal";
+      } else if (output >= 25 || output <= 29.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Overweight";
+      } else if (output >= 30 || output <= 34.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Obesity (Class I)";
+      } else if (output >= 35 || output <= 39.99) {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Obesity (Class II)";
+      } else {
+        document.getElementById("bmi").innerText =
+          "Your BMI: " + output.toFixed(2);
+        document.getElementById("category").innerText =
+          "BMI Category: Obesity (Class III)";
+      }
+    } else {
+      document.getElementById("bmi").innerText = "Your BMI: ";
+      document.getElementById("category").innerText = "BMI Category: ";
+    }
+  };
+</script>

@@ -1,0 +1,214 @@
+<!-- NOTE: Kindly note that the form does not have actual validation of input yet. All it
+does is throw some cautionary messages whenever the submit button is pressed yet no field
+is answered at all. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/png" href="images/form.png" />
+    <title>Form Page</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <p style="color: white; padding: 15px 0 0 26px; letter-spacing: 2px;">COSCOLLUELA</p>
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" aria-current="page" href="index.html">About Me</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="family.html">Family</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link active" href="form.html">Form</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="slideshow.html">Slideshow</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="currency.html">Currency</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="bmiCalc.html">BMI</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <span class="project-name">CS 121 Laboratory 1
+          </span>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="form-introduction text-center">
+        <p style="font-size: 1.5rem;"><strong>Tell Me More About Yourself!</strong></p>
+        <p class="lead">Kindly fill out the form below.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7" style="padding: 20px 20px 0 20px; margin-bottom: 30px; background: rgb(19, 18, 18); color: white; border-radius: 8px;">
+          <form class="needs-validation" novalidate>
+            <div class="row g-3 mb-3">
+              <div class="col-sm-4">
+                <label for="firstName" class="form-label">First Name</label>
+                <input id="firstName" type="text" class="form-control" placeholder="Wanda" required>
+                <div class="invalid-feedback">
+                  Input something.
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input id="lastName" type="text" class="form-control" placeholder="Vision" required>
+                <div class="invalid-feedback">
+                  Something's missing.
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" input="password" class="form-control" required>
+                <div class="invalid-feedback">
+                  Please input a password.
+                </div>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-sm-8">
+                <label for="email" class="form-label">Email Address</label>
+                <input id="email" type="text" class="form-control" placeholder="user@gmail.com" required>
+                <div class="invalid-feedback">
+                  An input is required.
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="number" class="form-label">Phone Number</label>
+                <input id="number" type="text" class="form-control" placeholder="09457325869" required>
+                <div class="invalid-feedback">
+                  An input is required.
+                </div>
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label for="college" class="form-label">UP Manila College</label>
+                <select name="college" class="form-select" id="college" required>
+                  <option selected disabled value="">Choose one...</option>
+                  <option value="CAS">College of Arts and Sciences</option>
+                  <option value="CN">College of Nursing</option>
+                  <option value="CPH">College of Public Health</option>
+                  <option value="CM">College of Medicine</option>
+                  <option value="CD">College of Dentistry</option>
+                  <option value="CD">College of Pharmacy</option>
+                  <option value="CAMP">College of Allied Medical Professions</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select one.
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="status" class="form-label">Marital Status</label>
+                <select name="status" class="form-select" id="status" required>
+                  <option selected disabled value="">Choose one...</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Married">Separated</option>
+                  <option value="Married">Divorced</option>
+                  <option value="Married">Widowed</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select one.
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="sex" class="form-label">Sex</label><br>
+                <div class="form-check form-check-inline" style="padding-top: 10px;">
+                  <input class="form-check-input" name="sex" type="radio" name="flexRadioDefault" id="flexRadioDefault1" data-bs-toggle="tooltip" data-bs-placement="left" title="Male" required>
+                  <label class="form-check-label" for="flexRadioDefault1" data-bs-toggle="tooltip" data-bs-placement="left" title="Male">
+                    M
+                  </label>
+                </div>
+                <div class="form-check form-check-inline" style="padding-top: 10px;">
+                  <input class="form-check-input" name="sex" type="radio" name="flexRadioDefault" id="flexRadioDefault2" data-bs-toggle="tooltip" data-bs-placement="left" title="Female" required>
+                  <label class="form-check-label" for="flexRadioDefault2" data-bs-toggle="tooltip" data-bs-placement="left" title="Female">
+                    F
+                  </label>
+                </div>
+                <div class="invalid-feedback">
+                  Please select one.
+                </div>
+              </div>
+            </div>
+              <div class="col-12">
+                <button class="form-btn" type="submit" style="float: right;">Submit</button>
+              </div>
+          </form>
+        </div>
+        <div class="col-lg-5 mb-3" style="padding-left: 20px;">
+          <hr style="height: 2px;">
+          <p style="text-align: justify;">“It's very simple. As you grow, you learn more. If you stayed twenty-two, you'd always be as ignorant as you were at twenty-two. Aging is not just decay, you know. It's growth. It's more than the negative that you're going to die, it's also the positive that you understand you're going to die, and that you live a better life because of it.”</p>
+          <p style="text-align: right;">- <strong>Mitch Albom</strong>, <i>Tuesdays with Morrie</i> </p>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-dark text-center text-white" style="margin-top: 50px;">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/janfederico.coscolluela.7/" role="button" target="_blank"
+            ><i class="fa fa-facebook"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://discord.com/channels/@mea" role="button" target="_blank"
+            ><i class="fa fa-comments"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" role="button" target="_blank"
+            ><i class="fa fa-google"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://github.com/Fed-Coscolluela" role="button" target="_blank"
+            ><i class="fa fa-github"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://up.edu.ph/" role="button" target="_blank"
+            ><i class="fa fa-institution"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © Coscolluela | Portfolio 2021
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/validation.js"></script>
+  </body>
+</html>

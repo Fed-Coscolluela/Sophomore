@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/png" href="images/bmi-icon.png" />
+    <title>BMI Calculator</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <p style="color: white; padding: 15px 0 0 26px; letter-spacing: 2px;">COSCOLLUELA</p>
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" aria-current="page" href="index.html">About Me</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="family.html">Family</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="form.html">Form</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="slideshow.html">Slideshow</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link" href="currency.html">Currency</a>
+            </li>
+            <li class="nav-item" style="padding-left: 30px;">
+              <a class="nav-link active" href="bmiCalc.html">BMI</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <span class="project-name">CS 121 Laboratory 1
+          </span>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="form-introduction text-center">
+        <p style="font-size: 1.5rem;"><strong>BMI Calculator</strong>
+          <sup>
+            <button type="button" class="help-btn btn-sm" data-toggle="popover"
+            title="Playlist Guide" data-content="The output for BMI is narrowed down to two decimal points, hence only provides
+            the rough estimate following such format. Thank you.">
+            &#x3f;
+            </button>
+        </sup></p>
+        <p class="lead">Kindly supply your details.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mb-3" style="padding: 15px 40px;">
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <label for="exampleFormControlInput1" class="form-label">Weight</label>
+                    <input type="number" min="0" id="weight" oninput="getBMI()" class="form-control" placeholder="0.00">
+                </div>
+                <div class="col-sm-6">
+                    <label for="exampleFormControlInput1" class="form-label">Height</label>
+                    <input type="number" min="0" id="height" oninput="getBMI()" class="form-control" placeholder="0.00">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <label for="height" class="form-label">Weight Unit</label>
+                    <select name="unitWeight" oninput="getBMI()" class="form-select" id="unitWeight">
+                      <option disabled value="">Choose one...</option>
+                      <option selected value="kilogram">Kilogram (kg)</option>
+                      <option value="pound">Pound (lb)</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                <label for="weight" class="form-label">Height Unit</label>
+                <select name="unitHeight" oninput="getBMI()" class="form-select" id="unitHeight">
+                  <option disabled value="">Choose one...</option>
+                  <option selected value="meter">Meter (m)</option>
+                  <option value="centimeter">Centimeter (cm)</option>
+                </select>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                  <p>
+                    <strong>Your BMI:</strong>
+                    <span id="bmiNumber">
+                    </span>
+                  </p>
+                  <p>
+                    <strong>BMI Category: </strong>
+                    <span id="bmiCategory">
+                    </span>
+                  </p>
+                </div>
+                <div class="col-6">
+                  <button type="button" onclick="reset()" class="form-btn" style="float: right;">Reset</button>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-3" style="padding-left: 20px;">
+            <div class="row">
+
+                <table class="table table-dark table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="table-aligned">Category</th>
+                      <th scope="col" class="table-aligned">BMI Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="table-aligned">Underweight</td>
+                      <td class="table-aligned">&lt; 18.50 </td>
+                    </tr>
+                    <tr>
+                      <td class="table-aligned">Normal</td>
+                      <td class="table-aligned">18.50 - 24.99</td>
+                    </tr>
+                    <tr>
+                      <td class="table-aligned">Overweight</td>
+                      <td class="table-aligned">25.00 - 29.99</td>
+                    </tr>
+                    <tr>
+                      <td class="table-aligned">Obesity (Class I)</td>
+                      <td class="table-aligned">30.00 - 34.99</td>
+                    </tr>
+                    <tr>
+                      <td class="table-aligned">Obesity (Class II)</td>
+                      <td class="table-aligned">35.00 - 39.99</td>
+                    </tr>
+                    <tr>
+                      <td class="table-aligned">Obesity (Class III)</td>
+                      <td class="table-aligned">&gt;= 40.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-dark text-center text-white" style="margin-top: 50px;">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/janfederico.coscolluela.7/" role="button" target="_blank"
+            ><i class="fa fa-facebook"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://discord.com/channels/@mea" role="button" target="_blank"
+            ><i class="fa fa-comments"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" role="button" target="_blank"
+            ><i class="fa fa-google"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://github.com/Fed-Coscolluela" role="button" target="_blank"
+            ><i class="fa fa-github"></i
+          ></a>
+    
+          <a class="form-btn btn-outline-light btn-floating m-1" href="https://up.edu.ph/" role="button" target="_blank"
+            ><i class="fa fa-institution"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © Coscolluela | Portfolio 2021
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+
+      let weight = document.getElementById("weight");
+      let height = document.getElementById("height");
+      let unitWeight = document.getElementById("unitWeight");
+      let unitHeight = document.getElementById("unitHeight");
+
+      let bmiNumber = document.getElementById("bmiNumber");
+      let bmiCategory = document.getElementById("bmiCategory");
+
+      let weightOutput;
+      let heightOutput;
+
+      function getBMI(){
+          convertUnits_KG_M();
+
+          console.log(weightOutput);
+          console.log(heightOutput);
+
+          let bmi = weightOutput / (heightOutput * heightOutput);
+          let category;
+
+          if(bmi < 18.5){
+              category = "Underweight";
+          }
+          else if(bmi < 24.99){
+              category = "Normal";
+          }
+          else if(bmi < 29.99){
+              category = "Overweight";
+          }
+          else if(bmi < 34.99){
+              category = "Obesity (Class I)";
+          }
+          else if(bmi < 39.99){
+              category = "Obesity (Class II)";
+          }
+          else{
+              category = "Obesity (Class III)";
+          }
+
+          console.log(bmi)
+          console.log(category)
+
+          if (height.value !== "" && weight.value !== ""){
+             bmiNumber.innerHTML = (bmi).toFixed(2);
+             bmiCategory.innerHTML = category;
+          } else {
+             bmiNumber.innerHTML = "";
+             bmiCategory.innerHTML = "";
+          }
+
+      }
+
+      function convertUnits_KG_M(){
+          weightOutput = parseFloat(weight.value);
+          heightOutput = parseFloat(height.value);
+
+          if(unitWeight.value == "pound"){
+              weightOutput = weightOutput / 2.2046;
+          }
+
+          if(unitHeight.value == "centimeter"){
+              heightOutput = heightOutput * 0.01;
+          }
+      }
+
+    function reset() {
+      weight.value = null;
+      height.value = null;
+      unitWeight.value = "kilogram";
+      unitHeight.value = "meter";
+      document.getElementById("bmiNumber").innerText = "";
+      document.getElementById("bmiCategory").innerText = "";
+     }
+
+  </script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+   <script>
+       var popoverTriggerList = [].slice.call( document.querySelectorAll( '[data-toggle="popover"]' ) );
+       var popoverList = popoverTriggerList.map( function( popoverTrigger )
+       {
+           return new bootstrap.Popover( popoverTrigger );
+       } );
+   </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script> 
+  <script src="js/validation.js"></script>
+  </body>
+</html>
